@@ -1,4 +1,2 @@
 # python_data_structure
-Data structure created during school
-Notes taken
-Unique, creative approach to storing data
+Data structure created in school, Notes taken, Unique & creative approach to storing data
