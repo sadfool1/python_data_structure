@@ -1,7 +1,3 @@
-'''
-Lab 3 Task 2
-'''
-
 class QueueNode: 
     def __init__(self, data):
         self.data = data
