@@ -1,6 +1,7 @@
 '''
 =========================================
-We implement the Binary Search Tree clsss
+We implement the Binary Search Tree class
+with the least computational power
 =========================================
 '''
 
