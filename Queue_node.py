@@ -4,9 +4,11 @@ class QueueNode:
         self.next = None
 
 '''
+================================================
 We implement the queue similar to the linked list 
 The front is the first node of the linked list 
 The rear is the last node of the linked list 
+================================================
 '''        
 class Queue: 
     def __init__(self):
