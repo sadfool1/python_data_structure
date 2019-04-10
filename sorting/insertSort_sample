@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Apr 10 19:08:35 2019
+@author: jameselijah
+
+simple sorting algorithm, calculated computaitonal power worst case at O(n2)
+"""
+myList = [3,4,2,1,9,8,10,2]
+def insertionSort(myList):
+    for i in range(1, len(myList)):
+        temp = myList[i]
+        j = i-1 #iteration before i
+        while j >= 0 and temp < myList[j]: #satisfy both condition
+            myList[j+1] = myList[j] #
+            j -=1 #decrease j counter as we go up the list
+        myList[j+1] = temp
+            
+insertionSort(myList)
+print (myList)
