@@ -1,0 +1,10 @@
+# reverse order of nodes in a linked list
+def reverse(linkedlist):
+    prev = None
+    current = linkedlist.head
+    while current:
+        nextnode = current.next # current.next points to the original previous node
+        current.next = prev
+        prev = current # we work on the next node in the next iteration
+        current = nextnode # the head points to the original last node
+    linkedlist.head = prev
