@@ -1,0 +1,27 @@
+#Use of matplolib, numpy to get integral.
+#To use your experimental data to estimate the work done 
+#will have to perform the integral R --> p dV numerically. 
+#Use the trapezium rule (via the numpy.trapz Python function or the trapz function in GNU Octave or Matlab), or Simpson’s rule (via the scipy.integrate.simps Python function).
+
+#Python code:
+
+import matplotlib.pyplot as plt
+import csv
+import numpy as np
+from scipy import integrate
+
+x = []
+y = []
+
+with open('PATH or SAMPLE FILE','r') as csvfile: #make sure file obtained has 2 column. I usually extracted from excel file and copy paste into a text file.
+    plots = csv.reader(csvfile, delimiter= '	') #delimiter to remove the spacing between two values.
+    for row in plots:
+        x.append(float(row[0]))
+        y.append(float(row[1]))
+
+plt.plot(x,y, label='LABEL OF VALUES')
+plt.xlabel('label/SI UNIT')
+plt.ylabel('label/SI UNIT')
+plt.title('')
+plt.legend()
+print ('THE AREA IS %f' % (integrate.simps(y, x)))
