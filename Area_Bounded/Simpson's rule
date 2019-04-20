@@ -2,6 +2,8 @@
 #To use your experimental data to estimate the work done 
 #will have to perform the integral R --> p dV numerically. 
 #Use the trapezium rule (via the numpy.trapz Python function or the trapz function in GNU Octave or Matlab), or Simpson’s rule (via the scipy.integrate.simps Python function).
+#prints the graph of the area bounded
+
 
 #Python code:
 
@@ -24,4 +26,4 @@ plt.xlabel('label/SI UNIT')
 plt.ylabel('label/SI UNIT')
 plt.title('')
 plt.legend()
-print ('THE AREA IS %f' % (integrate.simps(y, x)))
+print ('THE AREA IS %f' % (integrate.simps(y, x))) 
