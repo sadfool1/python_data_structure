@@ -1,0 +1,79 @@
+"""
+==============================================================================================================================
+
+Merge sort orders a list of values by recursively dividing the list in half until each sub-list has one element recombine.
+
+We will use merge sort without using the inbuilt python merge sort and assume that the elements are all integers
+
+So for the code we have two functions, first your main mergesort(your_list) function that separates the list into two lists, 
+Second function merge(tempA, tempB) that reads the first element and compre them.
+
+This works for me, let me know if there are bugs.
+
+==============================================================================================================================
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr 11 17:14:28 2019
+
+@author: jameselijah
+"""
+import math 
+
+mylist = [3, 4, 2, 1, 9, 8, 10, 2] #test list
+tempC =[]
+
+def mergesort(list_sorting):
+    if len(list_sorting) == 0:
+        print ( list_sorting , "list is empty")
+    elif len(list_sorting) == 1:
+        print( list_sorting )
+    else:
+        n = math.ceil(len(list_sorting)/2)
+        tempA = [i for i in list_sorting[0:n]] #divide
+        tempB = [i for i in list_sorting[n:]]  #divide
+        for i in range(1, len(tempA)):  
+            temp = tempA[i]
+            j = i-1 #iteration before i
+            while j >= 0 and temp < tempA[j]: #satisfy both condition
+                tempA[j+1] = tempA[j] #
+                j -=1 #decrease j counter as we go up the list
+            tempA[j+1] = temp
+        
+        for i in range(1, len(tempB)):
+            temp = tempB[i]
+            j = i-1 #iteration before i
+            while j >= 0 and temp < tempB[j]: #satisfy both condition
+                tempB[j+1] = tempB[j] #
+                j -=1 #decrease j counter as we go up the list
+            tempB[j+1] = temp
+
+        merge(tempA,tempB)
+
+def merge(tempA,tempB):
+    indexA = 0
+    indexB = 0
+    tempC = []
+    while (indexA < len(tempA)) or (indexB < len(tempB)):
+        if indexA >= len(tempA):
+            tempC.append(tempB[indexB])
+            indexB +=1
+        elif indexB >= len(tempB):
+            tempC.append(tempA[indexA])
+            indexA +=1
+        elif tempA[indexA] > tempB[indexB]:
+            tempC.append(tempB[indexB])
+            indexB +=1
+        else:
+            tempC.append(tempA[indexA])
+            indexA +=1
+
+    
+    print(tempC)
+
+mergesort(mylist)
+
+
+#Your result should be [1, 2, 2, 3, 4, 8, 9, 10]
