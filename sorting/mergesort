@@ -8,7 +8,9 @@ We will use merge sort without using the inbuilt python merge sort and assume th
 So for the code we have two functions, first your main mergesort(your_list) function that separates the list into two lists, 
 Second function merge(tempA, tempB) that reads the first element and compre them.
 
-This works for me, let me know if there are bugs.
+HOWEVER This code is wrong. As explained below -- refer to line 99 for the write code.
+
+This is because my first attempt
 
 ==============================================================================================================================
 """
@@ -77,3 +79,63 @@ mergesort(mylist)
 
 
 #Your result should be [1, 2, 2, 3, 4, 8, 9, 10]
+
+
+
+
+
+
+
+"""
+==============================================================================================================================
+
+I re-read my notes and found out that my above method is wrong, not the actually the real MergeSort. Below is a piece of code derived from the following
+
+In referrence to B. Miller, D. Ranum. (2014). Created using Runestone 2.7.10. Retrieved from https://interactivepython.org/runestone/static/pythonds/SortSearch/TheMergeSort.html 
+==============================================================================================================================
+"""
+
+
+
+
+
+def mergeSort(mylist):
+    if len(mylist)>1:
+        n = len(mylist)//2
+        tempA = mylist[:n]
+        tempB = mylist[n:]
+        indexA=0
+        indexB=0
+        k=0
+        
+        mergeSort(tempA)
+        mergeSort(tempB)
+
+        while indexA < len(tempA) and indexB < len(tempB):
+            if tempA[indexA] < tempB[indexB]:
+                mylist[k]=tempA[indexA]
+                indexA=indexA+1
+            else:
+                mylist[k]=tempB[indexB]
+                indexB=indexB+1
+            k=k+1
+
+        while indexA < len(tempA):
+            mylist[k]=tempA[indexA]
+            indexA=indexA+1
+            k=k+1
+
+        while indexB < len(tempB):
+            mylist[k]=tempB[indexB]
+            indexB=indexB+1
+            k=k+1
+    elif len(mylist)== 1:
+        return mylist
+    else:
+        print('List empty')
+    
+
+mylist = [3,4,2,1,9,8,10,2]
+mergeSort(mylist)
+print(mylist)
+
