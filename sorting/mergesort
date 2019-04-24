@@ -1,16 +1,14 @@
 """
 ==============================================================================================================================
-
+Intro
 Merge sort orders a list of values by recursively dividing the list in half until each sub-list has one element recombine.
-
 We will use merge sort without using the inbuilt python merge sort and assume that the elements are all integers
-
 So for the code we have two functions, first your main mergesort(your_list) function that separates the list into two lists, 
 Second function merge(tempA, tempB) that reads the first element and compre them.
 
 HOWEVER This code is wrong. As explained below -- refer to line 99 for the write code.
 
-This is because my first attempt
+This is because my first attempt, the sorting method is not merge sort. 
 
 ==============================================================================================================================
 """
