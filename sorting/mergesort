@@ -147,67 +147,39 @@ Solution key given by PROF. [to be tested running time]
 ==================================================================================================================
 """
 
-'''
-The following code is contributed by Nikita Tiwari.
-It is available at the following webpage: 
-https://www.geeksforgeeks.org/maximum-subarray-sum-using-divide-and-conquer-algorithm/ 
-''' 
 
-# A Divide and Conquer based program 
-# for maximum subarray sum problem 
+def merge(list1,list2):
+    list3 = [] 
+    index1 = 0
+    index2 = 0
+    while ( index1 < len(list1) and index2 < len(list2) ):
+        if (list1[index1] <= list2[index2]): 
+            list3.append(list1[index1])
+            index1 = index1 + 1
+        else: 
+            list3.append(list2[index2])
+            index2 = index2 + 1
+    if index1 < len(list1) : 
+        for i in range (index1, len(list1), 1):
+            list3.append(list1[i]) 
+    if index2 < len(list2) : 
+        for i in range (index2, len(list2), 1):
+            list3.append(list2[i])
+    return list3 
 
-# Find the maximum possible sum in 
-# arr[] auch that arr[m] is part of it 
-def maxCrossingSum(arr, l, m, h) : 
-	
-	# Include elements on left of mid. 
-	sm = 0; left_sum = -10000000
-	
-	for i in range(m, l-1, -1) : 
-		sm = sm + arr[i] 
-		
-		if (sm > left_sum) : 
-			left_sum = sm 
-	
-	
-	# Include elements on right of mid 
-	sm = 0; right_sum = -1000
-	for i in range(m + 1, h + 1) : 
-		sm = sm + arr[i] 
-		
-		if (sm > right_sum) : 
-			right_sum = sm 
-	
-
-	# Return sum of elements on left and right of mid 
-	return left_sum + right_sum; 
+            
+# function merge sort       
+def mergeSort_final(mylist):     
+    if (len(mylist) < 2):    
+        return mylist 
+    middle = int(len(mylist)/2)  # alternatively, middle = len(mylist) // 2 
+    list1 = mergeSort_final(mylist[0:middle]) #apply mergeSort to the left half 
+    list2 = mergeSort_final(mylist[middle:]) #apply mergeSort to the right half 
+    list3 = merge(list1, list2)
+    return list3 
 
 
-# Returns sum of maxium sum subarray in aa[l..h] 
-def maxSubArraySum(arr, l, h) : 
-	
-	# Base Case: Only one element 
-	if (l == h) : 
-		return arr[l] 
-
-	# Find middle point 
-	m = (l + h) // 2
-
-	# Return maximum of following three possible cases 
-	# a) Maximum subarray sum in left half 
-	# b) Maximum subarray sum in right half 
-	# c) Maximum subarray sum such that the 
-	#	 subarray crosses the midpoint 
-	return max(maxSubArraySum(arr, l, m), 
-			maxSubArraySum(arr, m+1, h), 
-			maxCrossingSum(arr, l, m, h)) 
-			
-
-# Driver Code 
-# arr = [2, 3, 4, 5, 7] 
-arr = [4,-3,5,-2,-1,2,6,-2]
-n = len(arr) 
-
-max_sum = maxSubArraySum(arr, 0, n-1) 
-print("Maximum contiguous sum is ", max_sum) 
+list1 = [3, 4, 2, 1, 9, 8, 10, 2]
+list2 = mergeSort_final(list1)
+print(list2)   
 
