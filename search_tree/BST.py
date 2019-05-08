@@ -75,3 +75,6 @@ for x in list1:
 r = myBST.inorderTraversal(myBST.root)
 print(r)   
 
+
+
+#AVL tree and B+ tree ensures that the height remains O(log base 2 (n)) --> perfect height 
