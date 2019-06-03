@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jun  3 13:37:17 2019
+
+@author: jameselijah
+"""
+
+import numpy as np
+
+# input data set to be defined 
+
+data_set = np.array([[0,0,1], [0,1,1], [1,0,1], [1,1,1]])
+
+# defined output set
+
+output_set = np.array ([0,0,1,1]).T
+
+np.random.seed(1)
+
+# initialize weights randomly with mean 0
+syn0 = 2*np.random.random((3,1)) - 1
+
+def nonlin(x,deriv=False):
+    if(deriv==True):
+        return x*(1-x)
+    return 1/(1+np.exp(-x))
+
+
+
+for i in range(10000):
+    l0 = data_set
+    l1 = nonlin(np.dot(l0,syn0))
+
+    # how much did we miss?
+    l1_error = output_set - l1
+
+    # multiply how much we missed by the 
+    # slope of the sigmoid at the values in l1
+    l1_delta = l1_error * nonlin(l1,True)
+
+    # update weights
+    syn0 += np.dot(l0.T,l1_delta)
+
+print ("Output After Training:")
+print (l1)
+
