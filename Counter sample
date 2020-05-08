@@ -8,21 +8,28 @@ Would require to implement in separate try and exception.
 
 @author: jameselijah
 """
-user_list = list(input('Input list of numbers(integers) separated by spaces:'))
-while len(user_list) <= 0: #error check in case user input null
-    print ('please enter a list filled with integers only' )
-    user_list = list(input('Input list of numbers(integers) separated by spaces:'))
-user_int = int(input('Input the integer you want to count in the list you gave:'))
-
-while len(user_list) == 1:
-    if user_int == user_list[0]:
-        print ('Your integer %d appeared once in your list once!'%user_int)
-        break
-    else:
-        print ('Your integer is not in the list')
-        break
-
-else:
+try:
+    
+    def gather_entries():
+        global user_list
+        
+        user_list = []
+        
+        user_list = list(input('Input list of numbers(integers) separated by spaces:'))
+            
+        user_int = int(input('Input the integer you want to count in the list you gave:'))
+        
+        if len(user_list) == 1:
+            if user_int == user_list[0]:
+                print ('Your integer %d appeared once in your list once!'%user_int)
+                playagain()
+            else:
+                print ('Your integer is not in the list')
+                print ("")
+                playagain()
+                
+        return user_list
+            
     def counting_sort(user_list):# function to output an input of user and to sort it
         n = len(user_list)
         for i in range(1,n):
@@ -33,7 +40,7 @@ else:
                 x = x -1 # to go back to the left to produce my list
             user_list[x] = temp #put back the other value 
     print (user_list)
-    
+        
     print('Your generated list is shown as:',end='')
     counting_sort(user_list)
     
@@ -45,7 +52,25 @@ else:
         else:
             occurence[i] = 1
             return occurence
-        
+            
         print ('The number of times your integer appeared in your list is:' )
         print(counter(counting_sort))
-
+    
+    def playagain():
+        choice = input("Play again? Yes or No:").upper()
+        
+        if choice == "YES" or choice == "Y":
+            gather_entries()
+            
+        elif choice == "NO" or choice == "N":
+            print ("Thank you for playing")
+        else:
+            print ("Unknown command. Try Again")
+            print ("")
+            playagain()
+            
+    gather_entries()
+    
+except ValueError:
+    print ("Pls enter valid values (integers)")
+    gather_entries()
